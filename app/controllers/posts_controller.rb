@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  include PostsHelper
+  
   before_filter :signed_in_user, only: [:create, :new, :edit, :update, :destroy]
-  before_filter :check_recipe_owner, only: [:edit, :update, :destroy]
+  before_filter :check_post_owner, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all
