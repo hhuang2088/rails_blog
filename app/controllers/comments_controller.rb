@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_filter :signed_in_user, only: [:create, :new, :edit, :update, :destroy]
+  
   def create
     @comment = Comment.create(comment_params)
     redirect_to post_path(comment_params[:post_id])
